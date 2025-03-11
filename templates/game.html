@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="game-screen">
+        <!-- Hangman ASCII Art -->
+        <pre class="hangman">{{ {
+            0: "-----\n|   |\nO   |\n/|\\  |\n/ \\  |\n     |\n---------",
+            1: "-----\n|   |\nO   |\n/|\\  |\n/    |\n     |\n---------",
+            2: "-----\n|   |\nO   |\n/|\\  |\n     |\n     |\n---------",
+            3: "-----\n|   |\nO   |\n/|   |\n     |\n     |\n---------",
+            4: "-----\n|   |\nO   |\n|   |\n     |\n     |\n---------",
+            5: "-----\n|   |\nO   |\n     |\n     |\n     |\n---------",
+            6: "-----\n|   |\n    |\n     |\n     |\n     |\n---------"
+        }[hangman_stage] }}</pre>
+
+        <!-- Game Status -->
+        <p class="word">{{ word }}</p>
+        <p>Guessed Letters: {{ guessed_letters }}</p>
+        <p>Lives Remaining: {{ lives_remaining }}</p>
+
+        <!-- Error Messages -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- Win/Lose Messages -->
+        {% if win %}
+            <p class="win">Congratulations! You guessed the word: {{ word }}</p>
+            <a href="/" class="button">Play Again</a>
+        {% elif lose %}
+            <p class="lose">Game Over! The word was: {{ word }}</p>
+            <a href="/" class="button">Play Again</a>
+        {% else %}
+            <!-- Guess Input -->
+            <form method="POST">
+                <input type="text" name="guess" maxlength="1" placeholder="Guess a letter" required>
+                <button type="submit">Submit</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
