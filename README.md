@@ -1,4 +1,4 @@
-# ![HangGame](https://hang-game.vercel.app/)
+#1 [HangGame](https://hang-game.vercel.app/)
  
 This is demo purpose
 From server
